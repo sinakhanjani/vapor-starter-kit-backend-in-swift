@@ -1,32 +1,53 @@
-import FluentSQLite
+import FluentPostgreSQL
 import Vapor
+import Authentication
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
     // Register providers first
-    try services.register(FluentSQLiteProvider())
+    try services.register(FluentPostgreSQLProvider())
+    
+    // Register NIOServerConfig
+    let serverConfig = NIOServerConfig.default(hostname: "0.0.0.0")
+    services.register(serverConfig)
 
-    // Register routes to the router
     let router = EngineRouter.default()
     try routes(router)
     services.register(router, as: Router.self)
 
-    // Register middleware
-    var middlewares = MiddlewareConfig() // Create _empty_ middleware config
-    // middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
-    middlewares.use(ErrorMiddleware.self) // Catches errors and converts to HTTP response
+    var middlewares = MiddlewareConfig()
+    middlewares.use(ErrorMiddleware.self)
+    middlewares.use(FileMiddleware.self) // Serves files from `Public` directory
     services.register(middlewares)
 
-    // Configure a SQLite database
-    let sqlite = try SQLiteDatabase(storage: .memory)
-
-    // Register the configured SQLite database to the database config.
+    // Configure a database
     var databases = DatabasesConfig()
-    databases.add(database: sqlite, as: .sqlite)
+    let databaseConfig = PostgreSQLDatabaseConfig(
+      hostname: "localhost",
+      username: "admin",
+      database: "app",
+      password: "474262")
+    
+    let database = PostgreSQLDatabase(config: databaseConfig)
+    databases.add(database: database, as: .psql)
     services.register(databases)
-
-    // Configure migrations
+        
+    // Configure Authentication
+    try services.register(AuthenticationProvider())
     var migrations = MigrationConfig()
-    migrations.add(model: Todo.self, database: .sqlite)
+    migrations.add(model: Admin.self, database: .psql)
+    migrations.add(model: User.self, database: .psql)
+    migrations.add(model: MagCategory.self, database: .psql)
+    migrations.add(model: Mag.self, database: .psql)
+    migrations.add(model: Tag.self, database: .psql)
+    migrations.add(model: MagTagPivot.self, database: .psql)
+    migrations.add(model: Authentication.self, database: .psql)
+    migrations.add(model: JWToken.self, database: .psql)
+    migrations.add(model: Message.self, database: .psql)
     services.register(migrations)
+    let maxBodySize = NIOServerConfig.default(maxBodySize: 200_000_000)
+    services.register(maxBodySize)
 }
+
+//swift run Run --hostname 0.0.0.0 --port 9000
+//vapor run --hostname=0.0.0.0 --port=8080
