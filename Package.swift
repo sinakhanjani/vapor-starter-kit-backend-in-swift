@@ -12,7 +12,6 @@ let package = Package(
         .package(url: "https://github.com/vapor/fluent-postgresql.git",from: "1.0.0-rc"),
         .package(url: "https://github.com/vapor/leaf.git", from: "3.0.0-rc"),
         .package(url: "https://github.com/vapor/auth.git", from: "2.0.0-rc"),
-        .package(url: "https://github.com/mongodb/mongo-swift-driver.git", from: "0.1.3"),
         .package(url: "https://github.com/MihaelIsaev/SwifQL.git", from:"1.0.0"),
         .package(url: "https://github.com/MihaelIsaev/SwifQLVapor.git", from:"1.0.0"),
         .package(url: "https://github.com/vapor/jwt.git", from: "3.0.0")
@@ -22,7 +21,6 @@ let package = Package(
                                             "Vapor",
                                             "Leaf",
                                             "Authentication",
-                                            "MongoSwift",
                                             "SwifQLVapor",
                                             "SwifQL",
                                             "JWT","SwiftGD"]),
