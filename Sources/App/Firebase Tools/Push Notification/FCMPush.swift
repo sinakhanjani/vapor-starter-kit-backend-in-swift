@@ -45,7 +45,7 @@ class FCMPush {
     
     func createAndAddTopic(topic: String, user: User, request: Request) {
         guard let token = user.fcmToken else { return }
-        guard let url = URL.init(string: "https://iid.googleapis.com/iid/v1:batchAdd") else { return }
+//        guard let url = URL.init(string: "https://iid.googleapis.com/iid/v1:batchAdd") else { return }
         let topic = Topic(to: "/topics/"+topic, registrationTokens: [token])
 //        var request = URLRequest.init(url: url)
 //        request.httpMethod = "POST"

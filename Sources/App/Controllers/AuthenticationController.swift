@@ -19,7 +19,9 @@ struct AuthenticationController {
         func codegen() -> String {
             var result = ""
             repeat {
-                result = String(format:"%04d", arc4random_uniform(10000) )
+                if let arcRandom = try? CryptoRandom().generate(Int.self) {
+                    result = String(format:"%04d", arcRandom)
+                }
             } while result.count < 4 || Int(result)! < 1000
             return result
         }
