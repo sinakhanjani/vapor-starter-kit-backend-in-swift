@@ -15,7 +15,7 @@ struct AuthenticationController {
     
     static let `default` = AuthenticationController()
     
-    private func sendOTPCode(mobile: String, type: OTP_API.CodeType) throws -> (mobile: String, code: String) {
+    private func sendOTPCode(mobile: String, type: OTP_API.CodeType, request: Request) throws -> (mobile: String, code: String) {
         func codegen() -> String {
             var result = ""
             repeat {
@@ -24,9 +24,9 @@ struct AuthenticationController {
             return result
         }
         let code = codegen()
-        OTP_API.default.getToken { (token) in
+        OTP_API.default.getToken(request: request) { (token) in
             if let token = token {
-                OTP_API.default.sendCode(mobile: mobile, code: code, type: type, token: token) {
+                OTP_API.default.sendCode(mobile: mobile, code: code, type: type, token: token, request: request) {
                     ///
                 }
             }
@@ -39,7 +39,7 @@ struct AuthenticationController {
         guard let mobile = user.mobile else {
             throw Abort(.badRequest,reason: "Phone Requirement")
         }
-        let sendOTP = try AuthenticationController.default.sendOTPCode(mobile: mobile, type: codeType)
+        let sendOTP = try AuthenticationController.default.sendOTPCode(mobile: mobile, type: codeType, request: request)
         let auth = Authentication(mobile: mobile, code: sendOTP.code, userID: user.id!)
         _ = auth.save(on: request)
     }
@@ -114,7 +114,7 @@ extension AuthenticationController {
     public func GPhoneSendOTP(_ request: Request) throws -> Future<Generic<Empty>> {
         return try request.authorizedUser().flatMap { (user) in
             return try request.content.decode(Authentication.GPhone.self).flatMap(to: Generic<Empty>.self) { (auth) in
-                let sendOTP = try self.sendOTPCode(mobile: auth.mobile, type: .submit)
+                let sendOTP = try self.sendOTPCode(mobile: auth.mobile, type: .submit, request: request)
                 let auth = Authentication(mobile: auth.mobile, code: sendOTP.code, userID: user.id!)
                 _ = auth.save(on: request)
                 return Future.map(on: request) { () -> Generic<Empty> in

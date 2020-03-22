@@ -7,7 +7,6 @@
 
 import Foundation
 import Vapor
-import SwiftGD
 
 struct Directory {
 
@@ -72,11 +71,12 @@ struct Directory {
         }
         let filePath = publicDir + "/" + relativePath
         /// Save data into file
-        let compressedImg = try Image.init(data: data)
-        let compressedData = try compressedImg.resizedTo(width: 640)?.export(as: .png)
+//        let compressedImg = try Image.init(data: data)
+//        let compressedData = try compressedImg.resizedTo(width: 640)?.export(as: .png)
         switch compress {
         case .yes:
-            try compressedData?.write(to: URL(fileURLWithPath: filePath))
+//            try compressedData?.write(to: URL(fileURLWithPath: filePath))
+            try data.write(to: URL(fileURLWithPath: filePath))
         case .no:
             try data.write(to: URL(fileURLWithPath: filePath))
         }

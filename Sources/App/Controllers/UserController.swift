@@ -176,7 +176,7 @@ struct UserController: RouteCollection {
             return user.save(on: request).flatMap { (user) in
                 // --- set fcm topic ---
                 tagTypes?.forEach({ (topic) in
-                    FCMPush.default.removeTopic(topic: topic, user: user)
+                    FCMPush.default.removeTopic(topic: topic, user: user, request: request)
                 })
                 // --- return user ---
                 return Future.map(on: request) { () -> Generic<User.Public> in
@@ -199,11 +199,11 @@ struct UserController: RouteCollection {
                     let set2:Set<String> = Set(tags.map { $0.subType })
                     let removedTopic = set1.subtracting(set2)
                     removedTopic.forEach { (topic) in
-                        FCMPush.default.removeTopic(topic: topic, user: user)
+                        FCMPush.default.removeTopic(topic: topic, user: user, request: request)
                     }
                     let addedTopic = set2.subtracting(set1)
                     addedTopic.forEach { (topic) in
-                        FCMPush.default.createAndAddTopic(topic: topic, user: user)
+                        FCMPush.default.createAndAddTopic(topic: topic, user: user, request: request)
                     }
                     // --- save user ----
                     return user.save(on: request).flatMap { (user) in

@@ -39,7 +39,7 @@ struct NotificationController: RouteCollection {
                         if let data = send.coverFile?.data {
                             try directory.save(with: data, compress: .yes)
                         }
-                        FCMPush.default.sendNotificationTo(to: token, title: send.title, body: send.description, badge: Int(send.badge ?? ""), notifiCategory: send.category, apn: APN(imageURL: directory.filePath, app: "1.0", syntax: "swift_vapor", type: send.type, source: Source(storyboardID: send.storyboardID, message: send.message, duration: send.duration, webURL: send.webURL, mobile: send.mobile, telephone: send.telephone, chart: send.chart, nerkh: send.nerkh)), sound: send.sound)
+                        FCMPush.default.sendNotificationTo(to: token, title: send.title, body: send.description, badge: Int(send.badge ?? ""), notifiCategory: send.category, apn: APN(imageURL: directory.filePath, app: "1.0", syntax: "swift_vapor", type: send.type, source: Source(storyboardID: send.storyboardID, message: send.message, duration: send.duration, webURL: send.webURL, mobile: send.mobile, telephone: send.telephone, chart: send.chart, nerkh: send.nerkh)), sound: send.sound, request: request)
                     }
                 }
                 return Future.map(on: request) { () -> Generic<Empty> in
@@ -64,7 +64,7 @@ struct NotificationController: RouteCollection {
                     if let data = send.coverFile?.data {
                         try directory.save(with: data, compress: .yes)
                     }
-                    FCMPush.default.sendNotificationTo(to: "/topics/"+tag.subType, title: send.title, body: send.description, badge: Int(send.badge ?? ""), notifiCategory: send.category, apn: APN(imageURL: directory.filePath, app: "1.0", syntax: "swift_vapor", type: send.type, source: Source(storyboardID: send.storyboardID, message: send.message, duration: send.duration, webURL: send.webURL, mobile: send.mobile, telephone: send.telephone, chart: send.chart, nerkh: send.nerkh)), sound: send.sound)
+                    FCMPush.default.sendNotificationTo(to: "/topics/"+tag.subType, title: send.title, body: send.description, badge: Int(send.badge ?? ""), notifiCategory: send.category, apn: APN(imageURL: directory.filePath, app: "1.0", syntax: "swift_vapor", type: send.type, source: Source(storyboardID: send.storyboardID, message: send.message, duration: send.duration, webURL: send.webURL, mobile: send.mobile, telephone: send.telephone, chart: send.chart, nerkh: send.nerkh)), sound: send.sound, request: request)
                 }
                 return Future.map(on: request) { () -> Generic<Empty> in
                     return Generic<Empty>.init(error: false, reason: "Push notification send complete.", data: nil)
@@ -89,7 +89,7 @@ struct NotificationController: RouteCollection {
                         try directory.save(with: data, compress: .yes)
                     }
                     if let fcmToken = user.fcmToken {
-                        FCMPush.default.sendNotificationTo(to: fcmToken, title: send.title, body: send.description, badge: Int(send.badge ?? ""), notifiCategory: send.category, apn: APN(imageURL: directory.filePath, app: "1.0", syntax: "swift_vapor", type: send.type, source: Source(storyboardID: send.storyboardID, message: send.message, duration: send.duration, webURL: send.webURL, mobile: send.mobile, telephone: send.telephone, chart: send.chart, nerkh: send.nerkh)), sound: send.sound)
+                        FCMPush.default.sendNotificationTo(to: fcmToken, title: send.title, body: send.description, badge: Int(send.badge ?? ""), notifiCategory: send.category, apn: APN(imageURL: directory.filePath, app: "1.0", syntax: "swift_vapor", type: send.type, source: Source(storyboardID: send.storyboardID, message: send.message, duration: send.duration, webURL: send.webURL, mobile: send.mobile, telephone: send.telephone, chart: send.chart, nerkh: send.nerkh)), sound: send.sound, request: request)
                     }
                 }
                 return Future.map(on: request) { () -> Generic<Empty> in

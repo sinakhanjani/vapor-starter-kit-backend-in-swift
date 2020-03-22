@@ -7,7 +7,7 @@ let package = Package(
         .library(name: "app", targets: ["App"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/twostraws/SwiftGD.git", from: "2.4.0"),
+//        .package(url: "https://github.com/twostraws/SwiftGD.git", from: "2.4.0"),
         .package(url: "https://github.com/vapor/vapor.git",from: "3.0.0"),
         .package(url: "https://github.com/vapor/fluent-postgresql.git",from: "1.0.0-rc"),
         .package(url: "https://github.com/vapor/leaf.git", from: "3.0.0-rc"),
@@ -23,9 +23,8 @@ let package = Package(
                                             "Authentication",
                                             "SwifQLVapor",
                                             "SwifQL",
-                                            "JWT","SwiftGD"]),
+                                            "JWT"]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),
     ]
 )
-
