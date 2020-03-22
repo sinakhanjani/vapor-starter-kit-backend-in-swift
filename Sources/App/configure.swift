@@ -49,6 +49,6 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     services.register(maxBodySize)
 }
 
-//swift run Run --hostname 0.0.0.0 --port 9000
-//vapor run --hostname=0.0.0.0 --port=8080
-//DatabaseIdentifier<PostgreSQLDatabase>
+// swift run Run --hostname 0.0.0.0 --port 9000
+// vapor run --hostname=0.0.0.0 --port=8080
+// DatabaseIdentifier<PostgreSQLDatabase>

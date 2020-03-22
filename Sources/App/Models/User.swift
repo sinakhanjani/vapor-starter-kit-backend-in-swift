@@ -158,14 +158,9 @@ extension User {
     static func prepare(on connection: PostgreSQLConnection) -> Future<Void> {
         Database.create(self, on: connection) { (builder) in
             try addProperties(to: builder)
-            builder.field(for: \.operationSystem)
             builder.unique(on: \.mobile)
             builder.unique(on: \.username)
         }
-    }
-    
-    static func revert(on connection: PostgreSQLConnection) -> Future<Void> {
-        return Database.delete(User.self, on: connection)
     }
 }
 

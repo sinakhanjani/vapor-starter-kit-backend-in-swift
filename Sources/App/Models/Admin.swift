@@ -9,7 +9,7 @@ import Vapor
 import FluentPostgreSQL
 import Authentication
 
-final class Admin: Codable {    
+final class Admin: Codable {
     var id: UUID?
     var name: String
     var username: String
