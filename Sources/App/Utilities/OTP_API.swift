@@ -36,31 +36,8 @@ class OTP_API {
                 case message = "Message"
             }
         }
-//        let url = baseURL.appendingPathComponent("Token")
-//        var request = URLRequest.init(url: url)
-//        request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let jsonEncoder = JSONEncoder()
         guard let jsonData = try? jsonEncoder.encode(["UserApiKey":"c3660c7c6df3c559a9800c7c","SecretKey":"app"]) else { return }
-//        request.httpBody = jsonData
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            if let error = error {
-//                print(error as Any)
-//                completion(nil)
-//                return
-//            }
-//            if let data = data {
-//                guard let json = ((try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]) as [String : Any]??) else { completion(nil) ; return }
-//                if let token = json?["TokenKey"] as? String {
-//                    completion(token)
-//                } else {
-//                    completion(nil)
-//                }
-//            } else {
-//                completion(nil)
-//            }
-//        }
-//        task.resume()
         var headers: HTTPHeaders = .init()
         headers.add(name: "Content-Type", value: "application/json")
         let body = HTTPBody(data: jsonData)
@@ -78,24 +55,8 @@ class OTP_API {
     }
     
     public func sendCode(mobile: String, code: String, type: CodeType, token: String, request: Request, completion: @escaping () -> Void) {
-//        let url = baseURL.appendingPathComponent("UltraFastSend")
-//        var request = URLRequest.init(url: url)
-//        request.httpMethod = "POST"
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.setValue(token, forHTTPHeaderField: "x-sms-ir-secure-token")
         let jsonEncoder = JSONEncoder()
         guard let jsonData = try? jsonEncoder.encode(smsGenerator(type: type, mobile: mobile, code: code)) else { return }
-//        request.httpBody = jsonData
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            if let error = error {
-//                print(error as Any)
-//                return
-//            }
-//            if data != nil {
-//                completion()
-//            }
-//        }
-//        task.resume()
         var headers: HTTPHeaders = .init()
         headers.add(name: "Content-Type", value: "application/json")
         headers.add(name: "x-sms-ir-secure-token", value: token)
