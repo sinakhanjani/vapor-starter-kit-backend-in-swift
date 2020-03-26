@@ -16,7 +16,7 @@ struct CurrencyController: RouteCollection {
 
     func boot(router: Router) throws {
         let routes = router.grouped(basePath)
-        routes.post("add", use: sessionManager.createTrackingSession)
+        routes.post("add",TrackingSession.parameter, use: sessionManager.createTrackingSession)
         routes.post("close",TrackingSession.parameter, use: closeWSHandler)
         routes.post("update",TrackingSession.parameter, use: updateWSHandler)
     }
