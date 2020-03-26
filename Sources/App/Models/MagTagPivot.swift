@@ -7,7 +7,6 @@
 
 import Foundation
 import FluentPostgreSQL
-import SwifQLVapor
 
 final class MagTagPivot: PostgreSQLUUIDPivot,ModifiablePivot {
     var id: UUID?
@@ -38,4 +37,3 @@ extension MagTagPivot {
   }
 }
 
-extension MagTagPivot: Tableable {}

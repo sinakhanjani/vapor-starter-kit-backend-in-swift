@@ -7,7 +7,6 @@
 
 import Vapor
 import Fluent
-import SwifQLVapor
 import Crypto
 
 struct MagController: RouteCollection {

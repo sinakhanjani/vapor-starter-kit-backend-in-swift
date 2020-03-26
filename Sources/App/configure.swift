@@ -47,6 +47,11 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     services.register(migrations)
     let maxBodySize = NIOServerConfig.default(maxBodySize: 200_000_000)
     services.register(maxBodySize)
+    
+    // MARK: Websockets
+    let websockets = NIOWebSocketServer.default()
+    sockets(websockets)
+    services.register(websockets, as: WebSocketServer.self)
 }
 
 // swift run Run --hostname 0.0.0.0 --port 9000

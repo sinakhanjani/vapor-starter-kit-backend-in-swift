@@ -7,7 +7,6 @@
 
 import Vapor
 import FluentPostgreSQL
-import SwifQLVapor
 
 final class MagCategory: Codable {
     var id: UUID?
@@ -69,4 +68,3 @@ extension MagCategory: PostgreSQLUUIDModel {}
 extension MagCategory: Content {}
 extension MagCategory: Migration {}
 extension MagCategory: Parameter {}
-extension MagCategory: Tableable {}

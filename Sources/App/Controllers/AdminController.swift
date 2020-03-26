@@ -7,7 +7,6 @@
 
 import Vapor
 import Crypto
-import SwifQLVapor
 
 struct AdminController: RouteCollection {
     

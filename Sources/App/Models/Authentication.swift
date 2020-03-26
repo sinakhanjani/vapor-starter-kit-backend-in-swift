@@ -9,7 +9,6 @@ import Foundation
 import Vapor
 import FluentPostgreSQL
 import Fluent
-import SwifQLVapor
 
 final class Authentication: Codable {
     var id: UUID?
@@ -95,5 +94,4 @@ extension Authentication: PostgreSQLUUIDModel {}
 extension Authentication: Content {}
 extension Authentication: Migration {}
 extension Authentication: Parameter {}
-extension Authentication: Tableable {}
 extension Authentication.Response: Content {}

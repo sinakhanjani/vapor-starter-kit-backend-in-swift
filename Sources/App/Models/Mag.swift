@@ -8,7 +8,6 @@
 import Vapor
 import FluentPostgreSQL
 import Fluent
-import SwifQLVapor
 
 final class Mag: Codable {
     var id: UUID?
@@ -122,4 +121,3 @@ extension Mag: Content {}
 extension Mag: Migration {}
 extension Mag: Parameter {}
 extension Mag.Public: Content {}
-extension Mag: Tableable {}

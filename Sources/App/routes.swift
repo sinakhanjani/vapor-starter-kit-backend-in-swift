@@ -4,7 +4,7 @@ import Vapor
 public func routes(_ router: Router) throws {
     // Basic "It works" example
     router.get { req in
-        return "It works!"
+        return "It works!, Nerkh."
     }
     // --- Registeration ---
     // administrators
@@ -28,4 +28,7 @@ public func routes(_ router: Router) throws {
     // Notification
     let notificationController = NotificationController()
     try router.register(collection: notificationController)
+    // Currency
+    let currencyController = CurrencyController()
+    try router.register(collection: currencyController)
 }
