@@ -16,6 +16,8 @@ let package = Package(
 //        .package(url: "https://github.com/MihaelIsaev/SwifQLVapor.git", from:"1.0.0"),
         .package(url: "https://github.com/vapor/jwt.git", from: "3.0.0"),
         .package(url: "https://github.com/vapor/redis.git", from: "3.0.0"),
+//        .package(url: "https://github.com/tid-kijyun/Kanna.git", from: "5.2.0"),
+        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "1.7.4"),
     ],
     targets: [
         .target(name: "App", dependencies: ["FluentPostgreSQL",
@@ -23,7 +25,8 @@ let package = Package(
                                             "Leaf",
                                             "Authentication",
                                             "JWT",
-                                            "Redis"]),
+                                            "Redis",
+                                            "SwiftSoup"]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),
     ]

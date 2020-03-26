@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)"
+options: "15053b5ca9b79660f2ed1c739c0b3f61"
+build_time: [1585245454, 410738000]
+inputs:
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/core/Sources/COperatingSystem/libc.swift": [1585243112, 422363404]

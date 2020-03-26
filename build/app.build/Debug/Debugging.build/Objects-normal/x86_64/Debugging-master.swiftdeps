@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)"
+options: "f7f58d5c540ebbb55f75f18c3346d093"
+build_time: [1585245454, 432032000]
+inputs:
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/core/Sources/Debugging/Debuggable.swift": [1585243112, 426670598]
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/core/Sources/Debugging/Demangler.swift": [1585243112, 426814689]
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/core/Sources/Debugging/SourceLocation.swift": [1585243112, 426964893]

@@ -1,0 +1,10 @@
+version: "Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)"
+options: "33751e47eb64f15e2c7cf280cd4a6bc1"
+build_time: [1585245428, 600754000]
+inputs:
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/Kanna/Sources/Kanna/CSS.swift": !dirty [1585244314, 999416433]
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/Kanna/Sources/Kanna/Deprecated.swift": !dirty [1585244314, 999576603]
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/Kanna/Sources/Kanna/Kanna.swift": !dirty [1585244314, 999968436]
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/Kanna/Sources/Kanna/libxmlHTMLDocument.swift": !dirty [1585244315, 105182]
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/Kanna/Sources/Kanna/libxmlHTMLNode.swift": !dirty [1585244315, 269519]
+  "/Users/sinakhanjani/vapor/app/.build/checkouts/Kanna/Sources/Kanna/libxmlParserOption.swift": !dirty [1585244315, 413831]
