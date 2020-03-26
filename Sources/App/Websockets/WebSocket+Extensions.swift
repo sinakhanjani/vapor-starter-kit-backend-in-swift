@@ -13,6 +13,7 @@ extension WebSocket {
   func send(_ currency: Currency) {
     let encoder = JSONEncoder()
     guard let data = try? encoder.encode(currency) else { return }
+    print("data send to listener - websocket.")
     send(data)
   }
 }
