@@ -19,6 +19,12 @@ struct CurrencyController: RouteCollection {
         routes.post("add",TrackingSession.parameter, use: sessionManager.createTrackingSession)
         routes.post("close",TrackingSession.parameter, use: closeWSHandler)
         routes.post("update",TrackingSession.parameter, use: updateWSHandler)
+        routes.get("fetch", use: fetchHTML)
+    }
+    
+    func fetchHTML(_ request: Request) throws -> HTTPStatus {
+        TGJU.default.fetchTGJU(request: request)
+        return .ok
     }
     
     func closeWSHandler(_ request: Request) throws -> HTTPStatus {
