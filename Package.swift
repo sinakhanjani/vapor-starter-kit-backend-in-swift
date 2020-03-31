@@ -19,7 +19,7 @@ let package = Package(
 //        .package(url: "https://github.com/tid-kijyun/Kanna.git", from: "5.2.0"),
         .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "1.7.4"),
 //        .package(url: "https://github.com/mongodb/mongo-swift-driver.git", from: "0.1.3"),
-        .package(url: "https://github.com/asensei/vapor-fluent-mongo.git", from: "3.0.0"),
+//        .package(url: "https://github.com/asensei/vapor-fluent-mongo.git", from: "3.0.0"),
     ],
     targets: [
         .target(name: "App", dependencies: ["FluentPostgreSQL",
@@ -28,7 +28,7 @@ let package = Package(
                                             "Authentication",
                                             "JWT",
                                             "Redis",
-                                            "SwiftSoup","FluentMongo"]),//"MongoSwift"
+                                            "SwiftSoup",]),//"MongoSwift" "FluentMongo"
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),
     ]
