@@ -83,6 +83,15 @@
         }
       },
       {
+        "package": "Jobs",
+        "repositoryURL": "https://github.com/BrettRToomey/Jobs.git",
+        "state": {
+          "branch": null,
+          "revision": "2051cc49b64692534225ea9d347051f64ac682ee",
+          "version": "1.1.2"
+        }
+      },
+      {
         "package": "JWT",
         "repositoryURL": "https://github.com/vapor/jwt.git",
         "state": {
@@ -101,30 +110,12 @@
         }
       },
       {
-        "package": "MongoSwift",
-        "repositoryURL": "https://github.com/mongodb/mongo-swift-driver.git",
-        "state": {
-          "branch": null,
-          "revision": "1b38ca8987d1938e0c9245f959fa2172b13cba60",
-          "version": "0.2.0"
-        }
-      },
-      {
         "package": "Multipart",
         "repositoryURL": "https://github.com/vapor/multipart.git",
         "state": {
           "branch": null,
           "revision": "a7e0db512ff7eee7cd91d0a69dfeeec36f74d604",
           "version": "3.1.2"
-        }
-      },
-      {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble.git",
-        "state": {
-          "branch": null,
-          "revision": "f8657642dfdec9973efc79cc68bcef43a653a2bc",
-          "version": "8.0.2"
         }
       },
       {
@@ -179,24 +170,6 @@
           "branch": null,
           "revision": "314d9cd21165bcf14215e336a23ff8214f40e411",
           "version": "3.2.1"
-        }
-      },
-      {
-        "package": "bson",
-        "repositoryURL": "https://github.com/mongodb/swift-bson",
-        "state": {
-          "branch": null,
-          "revision": "40f770ed265bb9958edbcd0c809a3c2afe75a3ba",
-          "version": "2.1.0"
-        }
-      },
-      {
-        "package": "mongoc",
-        "repositoryURL": "https://github.com/mongodb/swift-mongoc",
-        "state": {
-          "branch": null,
-          "revision": "e503b50210dae2cf0220474c2f12087830150e9f",
-          "version": "2.0.0"
         }
       },
       {

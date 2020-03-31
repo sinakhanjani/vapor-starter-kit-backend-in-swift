@@ -20,6 +20,7 @@ class TGJU {
     
     private func parseHTML(request: Request, key: String) {
         do {
+
             _ = try? request.client().get("https://www.tgju.org").map { (res) in
                 guard let httpData = res.http.body.data else { return }
                 guard let str = String(data: httpData, encoding: .utf8) else { return }
