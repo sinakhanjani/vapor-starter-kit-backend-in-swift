@@ -44,6 +44,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     migrations.add(model: Authentication.self, database: DatabaseIdentifier<Authentication.Database>.psql)
     migrations.add(model: JWToken.self, database: DatabaseIdentifier<JWToken.Database>.psql)
     migrations.add(model: Message.self, database: DatabaseIdentifier<Message.Database>.psql)
+    migrations.add(model: CurrencyBuilder.self, database: DatabaseIdentifier<CurrencyBuilder.Database>.psql)
     services.register(migrations)
     let maxBodySize = NIOServerConfig.default(maxBodySize: 200_000_000)
     services.register(maxBodySize)
@@ -52,6 +53,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     let websockets = NIOWebSocketServer.default()
     sockets(websockets)
     services.register(websockets, as: WebSocketServer.self)
+    //
 }
 
 // swift run Run --hostname 0.0.0.0 --port 9000

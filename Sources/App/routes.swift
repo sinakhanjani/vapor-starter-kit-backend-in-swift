@@ -32,3 +32,5 @@ public func routes(_ router: Router) throws {
     let currencyController = CurrencyController()
     try router.register(collection: currencyController)
 }
+
+//http://194.5.207.132/

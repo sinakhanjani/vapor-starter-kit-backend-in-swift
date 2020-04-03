@@ -8,6 +8,6 @@
 import Vapor
 import Foundation
 
-func wordKey(with request: Request,_ key: String = "test") -> Future<String> {
+func wordKey(with request: Request,_ key: String = "currency") -> Future<String> {
   return Future.map(on: request) { key }
 }

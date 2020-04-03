@@ -17,8 +17,8 @@ struct MyDataType: Codable, Equatable {
 extension MyDataType: ReflectionDecodable {
     static func reflectDecoded() throws -> (MyDataType, MyDataType) {
         return (
-            MyDataType(foo: 42, bar: "towel"),
-            MyDataType(foo: 42, bar: "mostly harmless")
+            MyDataType(foo: 42, bar: "T"),
+            MyDataType(foo: 42, bar: "V")
         )
     }
 }
@@ -29,7 +29,7 @@ extension MyDataType: PostgreSQLDataConvertible {
         if let binary = data.binary {
             return try decoder.decode(MyDataType.self, from: binary[1...])
         } else {
-            throw PostgreSQLError(identifier: "Null data", reason: "Beats me")
+            throw PostgreSQLError(identifier: "Null data", reason: "err")
         }
     }
 

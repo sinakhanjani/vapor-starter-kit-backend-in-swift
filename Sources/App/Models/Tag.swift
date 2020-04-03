@@ -103,10 +103,6 @@ extension Future where T: Tag {
   }
 }
 
-extension Tag {
-
-}
-
 extension Tag: PostgreSQLUUIDModel {}
 extension Tag: Content {}
 extension Tag: Migration {}

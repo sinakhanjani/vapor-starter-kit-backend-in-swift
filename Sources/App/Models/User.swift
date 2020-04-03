@@ -18,8 +18,7 @@ final class User: Codable {
         case phone
     }
     enum Reference: String {
-        case fa
-        case en
+        case fa,en
     }
     
     var id: UUID?
