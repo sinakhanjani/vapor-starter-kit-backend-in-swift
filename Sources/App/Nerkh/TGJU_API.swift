@@ -113,6 +113,7 @@ class TGJU {
                                     }
                                     let currency = Currency(key: key,currentPrice: currentPrice, maxPrice: maxPrice, minPrice: minPrice, extend: Extend(percent: percent, meter: meter), date: formatter.string(from: Date()),reference: Reference(fa: name, en: ""))
                                     currencies.append(currency)
+                                    print(currency)
                                 }
                             }
                         }
