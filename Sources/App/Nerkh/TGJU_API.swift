@@ -38,7 +38,7 @@ class TGJU {
     
     private func addTag(_ request: Request, builder: CurrencyBuilder) {
         _ = builder.parameters.map { (currency) in
-            let tag = Tag(title: currency.key, description: currency.key, type: builder.group, iconURL: "Images/Tags/default.jpg", subType: currency.key)
+            let tag = Tag(title: currency.key, description: currency.key, type: builder.group, iconURL: "Images/Tag/default.png", subType: currency.key)
             _ = tag.save(on: request)
         }
     }
@@ -117,7 +117,8 @@ class TGJU {
                                 }) {
                                     return
                                 }
-                                let currency = Currency(key: key,currentPrice: currentPrice, maxPrice: maxPrice, minPrice: minPrice, extend: Extend(percent: percent, meter: meter), date: date, iconURL: "Images/Currency/default.png", reference: Reference(fa: name, en: refType.enNames(key: key)))
+                                let en = refType.enNames(key: key)
+                                let currency = Currency(key: key,currentPrice: currentPrice, maxPrice: maxPrice, minPrice: minPrice, extend: Extend(percent: percent, meter: meter), date: date, iconURL: "Images/Currency/default.png", reference: Reference(fa: en, en: en))
                                 currencies.append(currency)
                             }
                         }

@@ -78,7 +78,7 @@ struct TagController: RouteCollection {
     func createHandler(_ request: Request) throws -> Future<Generic<Tag>> {
         try request.content.decode(Tag.Post.self)
             .flatMap(to: Tag.self, { (post) in
-                let iconDir = Directory(ext: "jpg", folder: .picture(["Tags","\(post.title)"]))
+                let iconDir = Directory(ext: "jpg", folder: .picture(["Tag","\(post.title)"]))
                 let tag = Tag(title: post.title, description: post.description, type: post.type, iconURL: iconDir.filePath, subType: post.subType)
                 _ = try iconDir.save(with: post.iconURL.data, compress: .yes)
                 return try tag.added().save(on: request)
@@ -101,7 +101,6 @@ struct TagController: RouteCollection {
         return Future.map(on: request) { () -> Generic<Empty> in
             return Generic<Empty>(error: false, data: nil)
         }
-        
     }
     
     // --- Edited ---
