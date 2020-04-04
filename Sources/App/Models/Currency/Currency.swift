@@ -14,6 +14,7 @@ struct Currency: Content, Codable {
     var minPrice: Double
     var extend: Extend
     var date: String
+    var iconURL: String
     var reference: Reference
     
     static let dict: [String:[String]] = {

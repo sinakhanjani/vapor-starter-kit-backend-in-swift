@@ -20,7 +20,7 @@ class TGJU {
     private var duration:Double = 4
     private var deleteDBDuration: Double = 100
     public var wcEnable = false
-    private var refType: ReferenceType = .en
+    private var refType: ReferenceType = .fa
     private var fetchEnable = false
     
     public func fetchTGJU(request: Request, dict: [String: [String]] = Currency.dict, reference: ReferenceType) {
@@ -73,8 +73,9 @@ class TGJU {
                 return
             }
             guard let str = String(data: httpData, encoding: .utf8) else { return }
+//            print(str)
             let document: Document = try SwiftSoup.parse(str)
-            let trs = try document.select("tr").array()
+            let trs = try document.select("tr").toggleClass("data-market-row").array()
             var data = [CurrencyBuilder]()
             var currencies = [Currency]()
             var meter:String = "none"
@@ -83,7 +84,8 @@ class TGJU {
                 _ = try trs.map { (tr) in
                     let keys = dic.value
                     _ = try keys.map { (key) in
-                        let pointer = try tr.getElementsByAttributeValueContaining("data-market-row", key).first()
+                        let pointer = try tr
+                            .getElementsByAttributeValueContaining("data-market-row", key).first()
                         if let pointer = try pointer?.getElementsByClass("pointer") {
                             let tds = try pointer.select("td").array()
                             let th = try pointer.select("th").first()
@@ -106,14 +108,16 @@ class TGJU {
                                 let character = tds_str[1].last ?? "0"
                                 let percent = Double(String(character))!
                                 let _ = tds_str[4]
-                                let formatter = DateFormatter()
-                                formatter.dateStyle = .medium
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+//                                dateFormatter.dateStyle = .medium
+                                let date = dateFormatter.string(from: Date())
                                 if currencies.contains(where: { (cr) -> Bool in
                                     cr.key == key
                                 }) {
                                     return
                                 }
-                                let currency = Currency(key: key,currentPrice: currentPrice, maxPrice: maxPrice, minPrice: minPrice, extend: Extend(percent: percent, meter: meter), date: formatter.string(from: Date()),reference: Reference(fa: name, en: ""))
+                                let currency = Currency(key: key,currentPrice: currentPrice, maxPrice: maxPrice, minPrice: minPrice, extend: Extend(percent: percent, meter: meter), date: date, iconURL: "Images/Currency/default.png", reference: Reference(fa: name, en: refType.enNames(key: key)))
                                 currencies.append(currency)
                             }
                         }
