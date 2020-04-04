@@ -48,7 +48,7 @@ final class TrackingSessionManager {
     }
     
     // Update
-    func update(_ currency: [CurrencyBuilder], for session: TrackingSession) {
+    func update(_ currency: Generic<[CurrencyBuilder]>, for session: TrackingSession) {
         guard let listeners = sessions[session] else { return }
         listeners.forEach { ws in
             ws.send(currency)

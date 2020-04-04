@@ -48,7 +48,7 @@ struct CurrencyController: RouteCollection {
             .flatMap(to: Generic<[CurrencyBuilder]>.self) { (currencyBuilders) in
                 if !TGJU.default.wcEnable {
                     Jobs.add(interval: Duration.seconds(4)) {
-                        sessionManager.update(currencyBuilders, for: session)
+                        sessionManager.update(Generic<[CurrencyBuilder]>(error: false, data: currencyBuilders), for: session)
                     }
                     TGJU.default.wcEnable = true
                 }

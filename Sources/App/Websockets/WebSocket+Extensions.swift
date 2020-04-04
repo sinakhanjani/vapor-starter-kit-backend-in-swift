@@ -10,7 +10,7 @@ import WebSocket
 import Foundation
 
 extension WebSocket {
-  func send(_ currency: [CurrencyBuilder]) {
+  func send(_ currency: Generic<[CurrencyBuilder]>) {
     let encoder = JSONEncoder()
     guard let data = try? encoder.encode(currency) else { return }
     print("send bytes:",data)
