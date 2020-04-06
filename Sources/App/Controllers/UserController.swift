@@ -219,5 +219,3 @@ struct UserController: RouteCollection {
         }
     }
 }
-
-

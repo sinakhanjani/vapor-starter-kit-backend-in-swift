@@ -21,7 +21,9 @@ let package = Package(
 //        .package(url: "https://github.com/mongodb/mongo-swift-driver.git", from: "0.1.3"),
 //        .package(url: "https://github.com/asensei/vapor-fluent-mongo.git", from: "3.0.0"),
         .package(url: "https://github.com/BrettRToomey/Jobs.git", from: "1.1.2"),
-        .package(url: "https://github.com/dduan/Just.git", from: "0.8.0")
+        .package(url: "https://github.com/dduan/Just.git", from: "0.8.0"),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.1.0"))
+
     ],
     targets: [
         .target(name: "App", dependencies: ["FluentPostgreSQL",
@@ -31,7 +33,9 @@ let package = Package(
                                             "JWT",
                                             "Redis",
                                             "SwiftSoup",
-                                            "Jobs","Just"]),//"MongoSwift" "FluentMongo"
+                                            "Jobs",
+                                            "Just",
+                                            "Alamofire"]),//"MongoSwift" "FluentMongo"
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),
     ]

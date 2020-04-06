@@ -17,7 +17,7 @@ struct Currency: Content, Codable {
     var iconURL: String
     var reference: Reference
     
-    static let dict: [String:[String]] = {
+    static let data: [String:[String]] = {
         let data = ["currency":["price_dollar_rl",
                                 "price_eur",
                                 "price_gbp",

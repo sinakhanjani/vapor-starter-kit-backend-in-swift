@@ -47,19 +47,17 @@ final class TrackingSessionManager {
       }
     }
     
-    // Update
+    // ==== Update ====
     func update(_ currency: Generic<[CurrencyBuilder]>, for session: TrackingSession) {
         guard let listeners = sessions[session] else { return }
-        listeners.forEach { ws in
-            ws.send(currency)
-        }
+        listeners.forEach { websocket in websocket.send(currency) }
     }
     
-    // Close
+    // ==== Close ====
     func close(_ session: TrackingSession) {
       guard let listeners = sessions[session] else { return }
-      listeners.forEach { ws in
-        ws.close()
+      listeners.forEach { websocket in
+        websocket.close()
       }
       sessions[session] = nil
     }

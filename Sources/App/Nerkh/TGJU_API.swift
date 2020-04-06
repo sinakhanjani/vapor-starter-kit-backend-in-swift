@@ -19,11 +19,13 @@ class TGJU {
     private var timeEstimated:Double = 0
     private var duration:Double = 4
     private var deleteDBDuration: Double = 100
-    public var wcEnable = false
     private var refType: ReferenceType = .fa
     private var fetchEnable = false
     
-    public func fetchTGJU(request: Request, dict: [String: [String]] = Currency.dict, reference: ReferenceType) {
+    public var wcEnable = false
+    public var session = TrackingSession(id: "currency")
+
+    public func fetchTGJU(_ request: Request, dict: [String: [String]] = Currency.data) {
         if !self.fetchEnable {
             Jobs.add(interval: .seconds(duration)) {
                 self.timeEstimated += self.duration
@@ -78,8 +80,8 @@ class TGJU {
             let trs = try document.select("tr").toggleClass("data-market-row").array()
             var data = [CurrencyBuilder]()
             var currencies = [Currency]()
-            var meter:String = "none"
-            var name:String = ""
+            var meter: String = "none"
+            var name: String = ""
             _ = try dict.map { (dic) in
                 _ = try trs.map { (tr) in
                     let keys = dic.value
@@ -109,8 +111,7 @@ class TGJU {
                                 let percent = Double(String(character))!
                                 let _ = tds_str[4]
                                 let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-//                                dateFormatter.dateStyle = .medium
+                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                                 let date = dateFormatter.string(from: Date())
                                 if currencies.contains(where: { (cr) -> Bool in
                                     cr.key == key
