@@ -10,9 +10,10 @@ import Vapor
 import Just
 
 class FCMPush {
+    typealias completion = (_ status: Bool) -> Void
+
     static let `default` = FCMPush()
     
-    typealias completion = (_ status: Bool) -> Void
     private let serverKey = "AAAA-HdHMtM:APA91bFr9H2zmRArCn663j-wJp2QW-B9IMGUALI-Ag7IqXIXfNNoeVXY2k2WZ1g6PaSVAeTmhQ-9Vb-jsJpf3Xz7Tv1Rti3fACbRxGiMIiF_1bSM8_1WqT36ElFZAUts5VwiTdyWpVj6"
     
     func sendNotificationTo(to: String, title: String?, body: String?, badge: Int?, notifiCategory: String?, apn: APN, sound: String?, request: Request) {
@@ -20,15 +21,15 @@ class FCMPush {
         let sendNotification = SendFCM(contentAvailable: true, mutableContent: true, priority: "high", data: apn, to: to, notification: notification)
         let jsonEncoder = JSONEncoder()
         guard let jsonData = try? jsonEncoder.encode(sendNotification) else { return }
-        var headers: HTTPHeaders = .init()
-        headers.add(name: "Content-Type", value: "application/json")
-        headers.add(name: "Authorization", value: "key="+serverKey)
+        var header: HTTPHeaders = .init()
+        header.add(name: "Content-Type", value: "application/json")
+        header.add(name: "Authorization", value: "key="+serverKey)
         let body = HTTPBody(data: jsonData)
-        let httpRequest = HTTPRequest(method: .POST, url: "/fcm/send", headers: headers, body: body)
-        let client = HTTPClient.connect(hostname: "fcm.googleapis.com", on: request)
-        let _ = client.flatMap(to: HTTPResponse.self) { client in
-            return client.send(httpRequest)
-        }
+        _ = try? request.client().post(URL(string: "https://fcm.googleapis.com/fcm/send")!, headers: header, beforeSend: { (request) in
+            request.http.body = body
+        }).map({ (response) in
+            print(String(data: response.http.body.data!, encoding: .utf8)!)
+        })
     }
     
     func createAndAddTopic(topic: String, user: User, request: Request) {
@@ -36,15 +37,15 @@ class FCMPush {
         let topic = Topic(to: "/topics/"+topic, registrationTokens: [token])
         let jsonEncoder = JSONEncoder()
         guard let jsonData = try? jsonEncoder.encode(topic) else { return }
-        var headers: HTTPHeaders = .init()
-        headers.add(name: "Content-Type", value: "application/json")
-        headers.add(name: "Authorization", value: "key="+serverKey)
+        var header: HTTPHeaders = .init()
+        header.add(name: "Content-Type", value: "application/json")
+        header.add(name: "Authorization", value: "key="+serverKey)
         let body = HTTPBody(data: jsonData)
-        let httpRequest = HTTPRequest(method: .POST, url: "/iid/v1:batchAdd", headers: headers, body: body)
-        let client = HTTPClient.connect(hostname: "iid.googleapis.com", on: request)
-        let _ = client.flatMap(to: HTTPResponse.self) { client in
-            return client.send(httpRequest)
-        }
+        _ = try? request.client().post(URL(string: "https://iid.googleapis.com/iid/v1:batchAdd")!, headers: header, beforeSend: { (request) in
+            request.http.body = body
+        }).map({ (response) in
+            print(String(data: response.http.body.data!, encoding: .utf8)!)
+        })
     }
     
     func removeTopic(topic: String, user: User, request: Request) {
@@ -52,15 +53,15 @@ class FCMPush {
         let topic = Topic(to: "/topics/"+topic, registrationTokens: [token])
         let jsonEncoder = JSONEncoder()
         guard let jsonData = try? jsonEncoder.encode(topic) else { return }
-        var headers: HTTPHeaders = .init()
-        headers.add(name: "Content-Type", value: "application/json")
-        headers.add(name: "Authorization", value: "key="+serverKey)
+        var header: HTTPHeaders = .init()
+        header.add(name: "Content-Type", value: "application/json")
+        header.add(name: "Authorization", value: "key="+serverKey)
         let body = HTTPBody(data: jsonData)
-        let httpRequest = HTTPRequest(method: .POST, url: "/iid/v1:batchRemove", headers: headers, body: body)
-        let client = HTTPClient.connect(hostname: "iid.googleapis.com", on: request)
-        let _ = client.flatMap(to: HTTPResponse.self) { client in
-            return client.send(httpRequest)
-        }
+        _ = try? request.client().post(URL(string: "https://iid.googleapis.com/iid/v1:batchRemove")!, headers: header, beforeSend: { (request) in
+            request.http.body = body
+        }).map({ (response) in
+            print(String(data: response.http.body.data!, encoding: .utf8)!)
+        })
     }
 }
 
