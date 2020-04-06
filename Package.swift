@@ -22,7 +22,7 @@ let package = Package(
 //        .package(url: "https://github.com/asensei/vapor-fluent-mongo.git", from: "3.0.0"),
         .package(url: "https://github.com/BrettRToomey/Jobs.git", from: "1.1.2"),
         .package(url: "https://github.com/dduan/Just.git", from: "0.8.0"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.1.0"))
+//        .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.1.0"))
 
     ],
     targets: [
@@ -34,8 +34,7 @@ let package = Package(
                                             "Redis",
                                             "SwiftSoup",
                                             "Jobs",
-                                            "Just",
-                                            "Alamofire"]),//"MongoSwift" "FluentMongo"
+                                            "Just"]),//"MongoSwift" "FluentMongo"
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"]),
     ]
