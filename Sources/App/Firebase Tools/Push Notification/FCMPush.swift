@@ -7,7 +7,7 @@
 
 import Foundation
 import Vapor
-import Alamofire
+import Just
 
 class FCMPush {
     static let `default` = FCMPush()
